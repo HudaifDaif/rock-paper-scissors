@@ -23,20 +23,49 @@
 					: computerRand === 2
 					? "Paper"
 					: "Scissors";
+
 			return computerSelection;
 		}
+
 		computerSelection = getComputerChoice();
 
-		console.log(computerSelection);
+		/*	console.log(computerSelection);	*/
 
-		playerChoice = prompt("Rock? Paper? Scissors?", "Choose wisely");
-		function formatSelection() {
-			let playerSelection =
-				playerChoice[0].toUpperCase() + playerChoice.substring(1);
-			return playerSelection;
+		/*	take player choice in prompt and format */
+
+		do {
+			playerChoice = prompt("Rock? Paper? Scissors?", "Choose wisely");
+			function formatSelection() {
+				let playerSelection =
+					playerChoice[0].toUpperCase() + playerChoice.substring(1);
+				return playerSelection;
+			}
+
+			playerSelection = formatSelection();
+		} while (
+			playerSelection !== "Rock" &&
+			playerSelection !== "Paper" &&
+			playerSelection !== "Scissors"
+		);
+
+		console.log("You played " + playerSelection);
+
+		function playRound(playerSelection, computerSelection) {
+			let roundOutcome =
+				playerSelection === "Rock" && computerSelection === "Scissors"
+					? "Win!"
+					: playerSelection === "Paper" &&
+					  computerSelection === "Rock"
+					? "Win!"
+					: playerSelection === "Scissors" &&
+					  computerSelection === "Paper"
+					? "Win!"
+					: "Lose!";
+			return roundOutcome;
 		}
-		playerSelection = formatSelection();
 
-		console.log(playerSelection);
+		roundOutcome = playRound();
+
+		console.log("You " + roundOutcome);
 	</script>
 </html>
