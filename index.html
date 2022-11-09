@@ -12,6 +12,9 @@
 	</body>
 
 	<script>
+		/*  Randomise number and set the range to 3, to cover all 3 outcomes.
+            Assign each number a value in the game. */
+
 		function getComputerChoice() {
 			let computerRand = Math.floor(Math.random() * 3) + 1;
 			let computerSelection =
@@ -22,8 +25,18 @@
 					: "Scissors";
 			return computerSelection;
 		}
-		let computerSelection = getComputerChoice();
+		computerSelection = getComputerChoice();
 
 		console.log(computerSelection);
+
+		playerChoice = prompt("Rock? Paper? Scissors?", "Choose wisely");
+		function formatSelection() {
+			let playerSelection =
+				playerChoice[0].toUpperCase() + playerChoice.substring(1);
+			return playerSelection;
+		}
+		playerSelection = formatSelection();
+
+		console.log(playerSelection);
 	</script>
 </html>
