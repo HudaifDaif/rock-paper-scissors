@@ -12,47 +12,57 @@
 	</body>
 
 	<script>
+		let overallScore = 0;
+		let playerScore = 0;
+		let computerScore = 0;
+
 		/*  Randomise number and set the range to 3, to cover all 3 outcomes.
-            Assign each number a value in the game. */
-
-		function getComputerChoice() {
-			let computerRand = Math.floor(Math.random() * 3) + 1;
-			let computerSelection =
-				computerRand === 1
-					? "Rock"
-					: computerRand === 2
-					? "Paper"
-					: "Scissors";
-
-			return computerSelection;
-		}
-
-		computerSelection = getComputerChoice();
-
-		/*	console.log(computerSelection);	*/
-
-		/*	take player choice in prompt and format */
+				          Assign each number a value in the game. */
 
 		do {
-			playerChoice = prompt("Rock? Paper? Scissors?", "Choose wisely");
-			function formatSelection() {
-				let playerSelection =
-					playerChoice[0].toUpperCase() + playerChoice.substring(1);
-				return playerSelection;
+			function getComputerChoice() {
+				let computerRand = Math.floor(Math.random() * 3) + 1;
+				let computerSelection =
+					computerRand === 1
+						? "Rock"
+						: computerRand === 2
+						? "Paper"
+						: "Scissors";
+
+				return computerSelection;
 			}
 
-			playerSelection = formatSelection();
-		} while (
-			playerSelection !== "Rock" &&
-			playerSelection !== "Paper" &&
-			playerSelection !== "Scissors"
-		);
+			computerSelection = getComputerChoice();
 
-		console.log("You played " + playerSelection);
+			// console.log(computerSelection);
 
-		function playRound(playerSelection, computerSelection) {
-			let roundOutcome =
-				playerSelection === "Rock" && computerSelection === "Scissors"
+			/*	take player choice in prompt and format */
+
+			do {
+				playerChoice = prompt(
+					"Rock? Paper? Scissors?",
+					"Choose wisely"
+				);
+
+				function formatSelection() {
+					let playerSelection =
+						playerChoice[0].toUpperCase() +
+						playerChoice.substring(1);
+					return playerSelection;
+				}
+
+				playerSelection = formatSelection();
+			} while (
+				playerSelection !== "Rock" &&
+				playerSelection !== "Paper" &&
+				playerSelection !== "Scissors"
+			);
+
+			console.log("You played " + playerSelection);
+
+			function playRound(playerSelection, computerSelection) {
+				return playerSelection === "Rock" &&
+					computerSelection === "Scissors"
 					? "Win!"
 					: playerSelection === "Paper" &&
 					  computerSelection === "Rock"
@@ -60,12 +70,35 @@
 					: playerSelection === "Scissors" &&
 					  computerSelection === "Paper"
 					? "Win!"
+					: playerSelection === computerSelection
+					? "Draw!"
 					: "Lose!";
-			return roundOutcome;
+			}
+
+			roundOutcome = playRound(playerSelection, computerSelection);
+
+			console.log("You " + roundOutcome);
+			console.log("-- Play again! --");
+
+			if (roundOutcome === "Win!") {
+				playerScore++;
+			}
+			if (roundOutcome === "Lose!") {
+				computerScore++;
+			}
+
+			overallScore = playerScore + computerScore;
+			// console.log(overallScore);
+		} while (overallScore < 5);
+
+		if (playerScore > computerScore) {
+			console.log(
+				"Well done! You won " + playerScore + " out of 5 rounds."
+			);
+		} else {
+			console.log(
+				"You Suck! You lost " + computerScore + " out of 5 rounds."
+			);
 		}
-
-		roundOutcome = playRound();
-
-		console.log("You " + roundOutcome);
 	</script>
 </html>
