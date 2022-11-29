@@ -5,100 +5,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Rock Paper Scissors</title>
+		<script src="./script.js" defer></script>
 	</head>
 	<body>
 		<h1>Rock Paper Scissors!</h1>
-		<h2>Let's play in the console</h2>
+		<h2>Let's play</h2>
+
+		<button class="rockBtn">Rock</button>
+		<button class="paperBtn">Paper</button>
+		<button class="scissorsBtn">Scissors</button>
 	</body>
-
-	<script>
-		let overallScore = 0;
-		let playerScore = 0;
-		let computerScore = 0;
-
-		/*  Randomise number and set the range to 3, to cover all 3 outcomes.
-				          Assign each number a value in the game. */
-
-		do {
-			function getComputerChoice() {
-				let computerRand = Math.floor(Math.random() * 3) + 1;
-				let computerSelection =
-					computerRand === 1
-						? "Rock"
-						: computerRand === 2
-						? "Paper"
-						: "Scissors";
-
-				return computerSelection;
-			}
-
-			computerSelection = getComputerChoice();
-
-			// console.log(computerSelection);
-
-			/*	take player choice in prompt and format */
-
-			do {
-				playerChoice = prompt(
-					"Rock? Paper? Scissors?",
-					"Choose wisely"
-				);
-
-				function formatSelection() {
-					let playerSelection =
-						playerChoice[0].toUpperCase() +
-						playerChoice.substring(1);
-					return playerSelection;
-				}
-
-				playerSelection = formatSelection();
-			} while (
-				playerSelection !== "Rock" &&
-				playerSelection !== "Paper" &&
-				playerSelection !== "Scissors"
-			);
-
-			console.log("You played " + playerSelection);
-
-			function playRound(playerSelection, computerSelection) {
-				return playerSelection === "Rock" &&
-					computerSelection === "Scissors"
-					? "Win!"
-					: playerSelection === "Paper" &&
-					  computerSelection === "Rock"
-					? "Win!"
-					: playerSelection === "Scissors" &&
-					  computerSelection === "Paper"
-					? "Win!"
-					: playerSelection === computerSelection
-					? "Draw!"
-					: "Lose!";
-			}
-
-			roundOutcome = playRound(playerSelection, computerSelection);
-
-			console.log("You " + roundOutcome);
-			console.log("-- Play again! --");
-
-			if (roundOutcome === "Win!") {
-				playerScore++;
-			}
-			if (roundOutcome === "Lose!") {
-				computerScore++;
-			}
-
-			overallScore = playerScore + computerScore;
-			// console.log(overallScore);
-		} while (overallScore < 5);
-
-		if (playerScore > computerScore) {
-			console.log(
-				"Well done! You won " + playerScore + " out of 5 rounds."
-			);
-		} else {
-			console.log(
-				"You Suck! You lost " + computerScore + " out of 5 rounds."
-			);
-		}
-	</script>
 </html>
