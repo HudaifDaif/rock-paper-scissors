@@ -51,6 +51,7 @@ function getOutcome() {
 	} else if (scoreArray[1] == 5) {
 		playerScore.textContent = "You";
 		computerScore.textContent = "Lose!";
+		return (scoreArray = [0, 0]);
 	} else updateScoreBoard();
 }
 
