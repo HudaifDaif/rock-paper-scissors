@@ -23,7 +23,7 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
-const scoreArray = [0, 0];
+let scoreArray = [0, 0];
 
 function getOverallScore(roundOutcome) {
 	if (roundOutcome == "Win!") {
@@ -35,6 +35,25 @@ function getOverallScore(roundOutcome) {
 	}
 }
 
+const playerScore = document.querySelector(".playerScore");
+const computerScore = document.querySelector(".computerScore");
+
+function updateScoreBoard() {
+	playerScore.textContent = `Your score is:\n${scoreArray[0]}`;
+	computerScore.textContent = `Computer Score is ${scoreArray[1]}`;
+}
+
+function getOutcome() {
+	if (scoreArray[0] == 5) {
+		playerScore.textContent = "You";
+		computerScore.textContent = "Win!";
+		return (scoreArray = [0, 0]);
+	} else if (scoreArray[1] == 5) {
+		playerScore.textContent = "You";
+		computerScore.textContent = "Lose!";
+	} else updateScoreBoard();
+}
+
 const rockChoiceBtn = document.querySelector(".rockBtn");
 rockChoiceBtn.addEventListener("click", () => {
 	playRound("Rock", getComputerChoice());
@@ -42,6 +61,7 @@ rockChoiceBtn.addEventListener("click", () => {
 	console.log("You " + roundOutcome);
 	console.log(getOverallScore(roundOutcome));
 	getComputerChoice();
+	getOutcome();
 });
 
 const paperChoiceBtn = document.querySelector(".paperBtn");
@@ -51,6 +71,7 @@ paperChoiceBtn.addEventListener("click", () => {
 	console.log("You " + roundOutcome);
 	console.log(getOverallScore(roundOutcome));
 	getComputerChoice();
+	getOutcome();
 });
 
 const scissorsChoiceBtn = document.querySelector(".scissorsBtn");
@@ -60,7 +81,5 @@ scissorsChoiceBtn.addEventListener("click", () => {
 	console.log("You " + roundOutcome);
 	console.log(getOverallScore(roundOutcome));
 	getComputerChoice();
+	getOutcome();
 });
-
-const scoreBoard = document.querySelector(".scoreBoard");
-// scoreBoard.textContent = `Your score is:\n${scoreArray[0]}\nComputer Score is ${scoreArray[1]}`
