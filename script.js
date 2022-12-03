@@ -54,6 +54,14 @@ function getOutcome() {
 	} else updateScoreBoard();
 }
 
+function roundAnimation(pressedBtn) {
+	if (roundOutcome == "Win!") {
+		pressedBtn.classList.add("roundWin");
+	} else if (roundOutcome == "Lose!") {
+		pressedBtn.classList.add("roundLose");
+	} else pressedBtn.classList.add("roundDraw");
+}
+
 const rockChoiceBtn = document.querySelector(".rockBtn");
 rockChoiceBtn.addEventListener("click", () => {
 	playRound("Rock", getComputerChoice());
@@ -62,6 +70,7 @@ rockChoiceBtn.addEventListener("click", () => {
 	console.log(getOverallScore(roundOutcome));
 	getComputerChoice();
 	getOutcome();
+	roundAnimation(rockChoiceBtn);
 });
 
 const paperChoiceBtn = document.querySelector(".paperBtn");
@@ -72,6 +81,7 @@ paperChoiceBtn.addEventListener("click", () => {
 	console.log(getOverallScore(roundOutcome));
 	getComputerChoice();
 	getOutcome();
+	roundAnimation(paperChoiceBtn);
 });
 
 const scissorsChoiceBtn = document.querySelector(".scissorsBtn");
@@ -82,4 +92,15 @@ scissorsChoiceBtn.addEventListener("click", () => {
 	console.log(getOverallScore(roundOutcome));
 	getComputerChoice();
 	getOutcome();
+	roundAnimation(scissorsChoiceBtn);
 });
+
+function removeTransition(e) {
+	if (e.propertyName !== "transform") return;
+	this.classList.remove("roundWin", "roundLose", "roundDraw");
+}
+
+const choices = document.querySelectorAll(".choice");
+choices.forEach((choice) =>
+	choice.addEventListener("transitionend", removeTransition)
+);
